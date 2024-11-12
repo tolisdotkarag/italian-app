@@ -38,8 +38,10 @@ export default function MyAppBar({ open }) {
       position="fixed"
       open={open}
       sx={{
-        background:
-          "linear-gradient(90deg, rgba(0,140,69,1) 30%, rgba(244,249,255,1) 45%, rgba(244,249,255,1) 55%, rgba(205,33,42,1) 70%);",
+        background: {
+          xs: "linear-gradient(90deg, rgba(0,140,69,1) 30%, rgba(244,249,255,1) 70%, rgba(244,249,255,1) 75%, rgba(205,33,42,1) 85%)",
+          md: "linear-gradient(90deg, rgba(0,140,69,1) 30%, rgba(244,249,255,1) 45%, rgba(244,249,255,1) 55%, rgba(205,33,42,1) 70%);",
+        },
       }}
     >
       <Toolbar>
@@ -51,6 +53,7 @@ export default function MyAppBar({ open }) {
           sx={[
             {
               marginRight: 5,
+              display: { xs: "none", md: "initial" },
             },
             open && { display: "none" },
           ]}

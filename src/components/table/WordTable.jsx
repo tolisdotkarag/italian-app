@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -15,7 +15,7 @@ const pageSize = 10;
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#3E505B",
-    color: '#fefefe',
+    color: "#fefefe",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -23,11 +23,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
@@ -37,12 +37,9 @@ export default function WordTable() {
   const getWords = useStore((store) => store.fetchWords);
   const [page, setPage] = useState(0);
 
-  const rows = useMemo(
-    () => {
-      return words.slice(page * pageSize, (page + 1) * pageSize);
-    },
-    [words, page]
-  );
+  const rows = useMemo(() => {
+    return words.slice(page * pageSize, (page + 1) * pageSize);
+  }, [words, page]);
 
   useEffect(() => {
     if (words.length) return;
@@ -53,12 +50,19 @@ export default function WordTable() {
     setPage(newPage);
   };
 
-  const getDate = date => new Date(date).toLocaleDateString();
+  const getDate = (date) => new Date(date).toLocaleDateString();
 
   return (
     words.length !== 0 && (
       <>
-        <TableContainer component={Paper} sx={{ marginTop: '1rem' }}>
+        <TableContainer
+          component={Paper}
+          sx={{
+            marginTop: "1rem",
+            maxWidth: "calc(100vw - 100px)",
+            overflow: "scroll",
+          }}
+        >
           <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -79,9 +83,13 @@ export default function WordTable() {
                     {word.italian}
                   </StyledTableCell>
                   <StyledTableCell align="right">{word.greek}</StyledTableCell>
-                  <StyledTableCell align="right">{word.part_of_speech}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {word.part_of_speech}
+                  </StyledTableCell>
                   <StyledTableCell align="right">{word.gender}</StyledTableCell>
-                  <StyledTableCell align="right">{getDate(word.date_added)}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {getDate(word.date_added)}
+                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
