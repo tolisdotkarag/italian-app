@@ -1,13 +1,9 @@
 import "../App.css";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import { Button } from "@mui/material";
-import { useStore } from "../store";
-import { useEffect } from "react";
+import { Box } from "@mui/material";
 import WordTable from "./table/WordTable";
 // import { useQuery } from "react-query";
 
 export default function ListenToWord(props) {
-
   // const {
   //   data: words,
   //   error,
@@ -61,7 +57,7 @@ export default function ListenToWord(props) {
       .catch((error) => console.error("Audio playback failed:", error));
   };
   return (
-    <div className="listen-to-word">
+    <Box sx={{ width: "100%", marginTop: "1rem" }}>
       {/* {words.map((word) => {
         return (
           <div key={word.docId} className="word">
@@ -75,6 +71,6 @@ export default function ListenToWord(props) {
         );
       })} */}
       <WordTable />
-    </div>
+    </Box>
   );
 }

@@ -58,9 +58,8 @@ export default function WordTable() {
         <TableContainer
           component={Paper}
           sx={{
-            marginTop: "1rem",
             maxWidth: "calc(100vw - 100px)",
-            overflow: "scroll",
+            overflow: "auto",
           }}
         >
           <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">

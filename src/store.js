@@ -15,7 +15,6 @@ const getVocabulary = async () => {
     docId: doc.id,
     ...doc.data(),
   }));
-  console.log(voc, voc.length)
   if (voc.length) voc = addArticlesToNouns(voc)
   return voc;
 };
