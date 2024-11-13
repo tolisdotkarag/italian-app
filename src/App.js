@@ -5,6 +5,7 @@ import ListenToWord from './components/ListenToWord';
 import CssBaseline from "@mui/material/CssBaseline";
 import MyAppBar from './components/sidebar/MyAppBar';
 import { useStore } from './store';
+import AddWord from './components/AddWord';
 
 function App() {
   const drawerIsOpen = useStore(store => store.drawerIsOpen);
@@ -27,14 +28,16 @@ function App() {
           position: 'relative',
           top: 48,
           flexGrow: 1,
-          p: 3
+          p: 3,
+          display: "flex",
+          justifyContent: "center",
         }}>
           {selectedMode === 0 ?
             <ListenToWord /> :
             selectedMode === 1 ?
               <h3>Practice title</h3>
               :
-              <h3>Contribute title</h3>
+              <AddWord />
           }
         </Box>
       </Box>
