@@ -21,12 +21,14 @@ import { useStore } from "../store";
 
 export default function AddWord(props) {
   const getWords = useStore((store) => store.fetchWords);
+  const words = useStore((store) => store.words);
   const [italian, setItalian] = useState("");
   const [greek, setGreek] = useState("");
   const [part_of_speech, setPartOfSpeech] = useState("");
   const [gender, setGender] = useState("");
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const resetForm = () => {
     setItalian("");
@@ -50,8 +52,15 @@ export default function AddWord(props) {
       (part_of_speech === "noun" && !gender.length)
     ) {
       setOpenError(true);
+      setErrorMessage("You need to fill all the required fields");
       return;
     }
+    if (words.find((word) => word.italian === italian)) {
+      setOpenError(true);
+      setErrorMessage("This word already exists in the vocabulary");
+      return;
+    }
+
     let data = {
       italian,
       greek,
@@ -177,7 +186,7 @@ export default function AddWord(props) {
           severity="error"
           sx={{ width: "100%" }}
         >
-          You need to fill all the required fields
+          {errorMessage}
         </Alert>
       </Snackbar>
     </Box>

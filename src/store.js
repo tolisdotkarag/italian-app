@@ -23,24 +23,25 @@ const addArticlesToNouns = (voc) => {
   return voc.map(word => {
     // word.date_added = new Date(word.date_added)
     if (!word.part_of_speech.startsWith('noun')) {
+      word.italianDisplay = word.italian
       return word;
     }
     if (word.gender === 'female') {
       word.gender = 'femminile';
       if (startsWithVowel(word.italian)) {
-        word.italian = "l' " + word.italian;
+        word.italianDisplay = "l' " + word.italian;
       }
-      else word.italian = "la " + word.italian;
+      else word.italianDisplay = "la " + word.italian;
     }
     else {
       word.gender = 'maschile';
       if (startsWithVowel(word.italian)) {
-        word.italian = "l' " + word.italian;
+        word.italianDisplay = "l' " + word.italian;
       }
       else if (needsArticleLo(word.italian)) {
-        word.italian = 'lo ' + word.italian;
+        word.italianDisplay = 'lo ' + word.italian;
       }
-      else word.italian = 'il ' + word.italian;
+      else word.italianDisplay = 'il ' + word.italian;
     }
     return word;
   })

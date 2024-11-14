@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TablePagination from "@mui/material/TablePagination";
 import { useStore } from "../../store";
+import { Box } from "@mui/material";
 
 const pageSize = 10;
 
@@ -54,7 +55,7 @@ export default function WordTable() {
 
   return (
     words.length !== 0 && (
-      <>
+      <Box sx={{ width: "100%", marginTop: "1rem" }}>
         <TableContainer
           component={Paper}
           sx={{
@@ -79,7 +80,7 @@ export default function WordTable() {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <StyledTableCell component="th" scope="row">
-                    {word.italian}
+                    {word.italianDisplay}
                   </StyledTableCell>
                   <StyledTableCell align="right">{word.greek}</StyledTableCell>
                   <StyledTableCell align="right">
@@ -102,7 +103,7 @@ export default function WordTable() {
           page={page}
           onPageChange={handleChangePage}
         />
-      </>
+      </Box>
     )
   );
 }
