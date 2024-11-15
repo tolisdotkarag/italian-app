@@ -3,7 +3,7 @@ name: Deploy Italian App to GitHub Pages
 on:
   push:
     branches:
-      - main  # Replace with your default branch name if it's not 'main'
+      - master  # Replace with your default branch name if it's not 'main'
 
 jobs:
   build-and-deploy:
