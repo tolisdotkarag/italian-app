@@ -24,6 +24,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "aposkarag@gmail.com"
+          git config --global user.name "tolisdotkarag"
+
       # Step 4: Deploy using npm scripts with environment variables
       - name: Deploy
         env:
