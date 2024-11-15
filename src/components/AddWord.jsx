@@ -4,6 +4,7 @@ import {
   Button,
   FormControl,
   FormControlLabel,
+  FormHelperText,
   FormLabel,
   Input,
   InputLabel,
@@ -26,6 +27,7 @@ export default function AddWord(props) {
   const [greek, setGreek] = useState("");
   const [part_of_speech, setPartOfSpeech] = useState("");
   const [gender, setGender] = useState("");
+  const [comment, setComment] = useState("");
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -35,6 +37,7 @@ export default function AddWord(props) {
     setGreek("");
     setPartOfSpeech("");
     setGender("");
+    setComment("");
   };
 
   const handleCloseSuccess = () => {
@@ -65,9 +68,9 @@ export default function AddWord(props) {
       italian,
       greek,
       part_of_speech,
-      ...(part_of_speech === "noun" && { gender }),
+      comment,
       date_added: new Date().getTime(),
-      comment: null,
+      ...(part_of_speech === "noun" && { gender }),
     };
     try {
       await addDoc(collection(db, "vocabulary"), data);
@@ -90,7 +93,7 @@ export default function AddWord(props) {
         maxWidth: "550px",
       }}
     >
-      <Typography variant="h6" sx={{ mt: 1, mb: -1 }}>
+      <Typography variant="h6" sx={{ mt: 1, mb: 0 }}>
         Add a word to the vocabulary
       </Typography>
       <FormControl required>
@@ -99,7 +102,11 @@ export default function AddWord(props) {
           id="italian-input"
           value={italian}
           onChange={(e) => setItalian(e.target.value)}
+          aria-describedby="italian-helper-text"
         />
+        <FormHelperText id="italian-helper-text">
+          Do not add an article to the nouns. It will be infered by the gender.
+        </FormHelperText>
       </FormControl>
       <FormControl required>
         <InputLabel htmlFor="greek-input">Greek</InputLabel>
@@ -109,8 +116,10 @@ export default function AddWord(props) {
           onChange={(e) => setGreek(e.target.value)}
         />
       </FormControl>
-      <FormControl required variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="part-of-speech-label">Type</InputLabel>
+      <FormControl required variant="standard" sx={{ minWidth: 120 }}>
+        <InputLabel id="part-of-speech-label" sx={{ paddingLeft: "14px" }}>
+          Type
+        </InputLabel>
         <Select
           labelId="part-of-speech-label"
           id="part-of-speech-input"
@@ -148,6 +157,14 @@ export default function AddWord(props) {
           </RadioGroup>
         </FormControl>
       )}
+      <FormControl>
+        <InputLabel htmlFor="comment-input">Comment</InputLabel>
+        <Input
+          id="comment-input"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+      </FormControl>
       <Box
         sx={{ display: "inline-flex", alignSelf: "end", gap: "0.3rem" }}
         aria-label="Form actions button group"
