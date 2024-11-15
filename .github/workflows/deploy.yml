@@ -29,6 +29,11 @@ jobs:
           git config --global user.email "aposkarag@gmail.com"
           git config --global user.name "tolisdotkarag"
 
+      # Step 5: Set the Git remote URL to include the GITHUB_TOKEN for authentication
+      - name: Set up Git remote for authentication
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
       # Step 4: Deploy using npm scripts with environment variables
       - name: Deploy
         env:
