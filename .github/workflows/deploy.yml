@@ -5,6 +5,10 @@ on:
     branches:
       - master  # Replace with your default branch name if it's not 'main'
 
+permissions:
+  contents: write  # Give the GITHUB_TOKEN permission to write to the repository
+
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
