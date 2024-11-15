@@ -110,7 +110,7 @@ export default function AddWord(props) {
         />
       </FormControl>
       <FormControl required variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="part-of-speech-label">Part of speech</InputLabel>
+        <InputLabel id="part-of-speech-label">Type</InputLabel>
         <Select
           labelId="part-of-speech-label"
           id="part-of-speech-input"
