@@ -35,7 +35,4 @@ jobs:
           REACT_APP_STORAGE_BUCKET: ${{ secrets.REACT_APP_STORAGE_BUCKET }}
           REACT_APP_TEXT_TO_SPEECH_URL: ${{ secrets.REACT_APP_TEXT_TO_SPEECH_URL }}
           REACT_APP_TEXT_TO_SPEECH_XI_API_KEY: ${{ secrets.REACT_APP_TEXT_TO_SPEECH_XI_API_KEY }}
-
-      # Step 5: Deploy using npm scripts
-      - name: Deploy
         run: npm run deploy
